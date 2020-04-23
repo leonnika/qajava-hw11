@@ -1,10 +1,20 @@
 package ru.netology.manager;
 
 import ru.netology.domain.Movies;
+import ru.netology.repository.MoviesRepository;
 
 public class MoviesManager {
-    private Movies[] movies = new Movies[0];
     private int numberMovies = 10;
+    private MoviesRepository repository;
+
+    public MoviesManager(MoviesRepository repository, int numberMovies) {
+        this.repository = repository;
+        this.numberMovies = numberMovies;
+    }
+
+    public MoviesManager(MoviesRepository repository) {
+        this.repository = repository;
+    }
 
     public MoviesManager(int numberMovies) {
         this.numberMovies = numberMovies;
@@ -14,18 +24,13 @@ public class MoviesManager {
     }
 
     public void AddMovies(Movies movie) {
-        int length = movies.length + 1;
-        Movies[] tmp = new Movies[length];
-        for (int i = 0; i < movies.length; i++) {
-            tmp[i] = movies[i];
-        }
-        int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = movie;
-        movies = tmp;
+        repository.save(movie);
+
     }
 
     public Movies[] getLastMovies() {
-// определяем количество фильмов которые выводим в афише
+        Movies[] movies = repository.findAll();
+        // определяем количество фильмов которые выводим в афише
         if (movies.length < numberMovies) {
             numberMovies = movies.length;
         }

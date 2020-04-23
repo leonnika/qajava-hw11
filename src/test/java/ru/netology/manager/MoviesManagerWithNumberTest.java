@@ -2,6 +2,8 @@ package ru.netology.manager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -15,11 +17,12 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
         // расширение для JUnit
-class MoviesManagerTest {
+class MoviesManagerWithNumberTest {
     @Mock  // подставляет заглушку вместо реальной реализации
     private MoviesRepository repository;
+    private int number=5;
     @InjectMocks  // подставляет заглушку в конструктор
-    private MoviesManager manager;
+    private MoviesManager manager=new MoviesManager(repository,number) ;
     private Movies first = new Movies(1, "Бладшоп", "боевик", "01.04.2020");
     private Movies second = new Movies(2, "Вперед", "мультфильм", "02.04.2020");
     private Movies third = new Movies(3, "Отель Белград", "комедия", "04.04.2020");
@@ -48,26 +51,26 @@ class MoviesManagerTest {
     }
 
     @Test
-    void shouldGetLastMoviesOverNumberFullAfisha() {
+    void shouldGetLastMoviesWithNumberFullAfisha() {
 // настройка заглушки
         Movies[] returned = new Movies[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh};
         doReturn(returned).when(repository).findAll();
-        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
+        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh};
         Movies[] actual = manager.getLastMovies();
         assertArrayEquals(expected, actual);
         verify(repository).findAll();
 
     }
 
-    @Test
-    void shouldGetLastMoviesNoFullAfisha() {
+    void shouldGetLastMoviesWithNumberNoFullAfisha() {
 // настройка заглушки
-        Movies[] returned = new Movies[]{first, second, third, fourth, fifth, sixth};
+        Movies[] returned = new Movies[]{first, second, third};
         doReturn(returned).when(repository).findAll();
-        Movies[] expected = new Movies[]{sixth, fifth, fourth, third, second,first};
+        Movies[] expected = new Movies[]{third,second,first};
         Movies[] actual = manager.getLastMovies();
         assertArrayEquals(expected, actual);
         verify(repository).findAll();
 
     }
+
 }
