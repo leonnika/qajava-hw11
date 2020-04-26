@@ -78,7 +78,7 @@ class MoviesRepositoryTest {
     void shouldRemoveAll() {
         repository.removeAll();
         Movies[] actual = repository.findAll();
-        Movies[] expected = new Movies[11];
+        Movies[] expected = new Movies[0];
         assertArrayEquals(expected, actual);
     }
 }

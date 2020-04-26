@@ -48,9 +48,7 @@ public class MoviesRepository {
 
     //полностью вычищает репозиторий
     public void removeAll() {
-        Movies[] tmp = new Movies[movie.length];
-        System.arraycopy(tmp, 0, movie, 0, movie.length);
-        movie = tmp;
+         movie = new Movies[0];
 
     }
 }
