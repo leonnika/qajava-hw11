@@ -4,11 +4,6 @@ import ru.netology.domain.Movies;
 
 public class MoviesManager {
     private Movies[] movies = new Movies[0];
-    private int numberMovies = 10;
-
-    public MoviesManager(int numberMovies) {
-        this.numberMovies = numberMovies;
-    }
 
     public MoviesManager() {
     }
@@ -24,16 +19,13 @@ public class MoviesManager {
         movies = tmp;
     }
 
-    public Movies[] getLastMovies() {
-// определяем количество фильмов которые выводим в афише
-        if (movies.length < numberMovies) {
-            numberMovies = movies.length;
-        }
+    public Movies[] getAllMovies() {
+
 // создаём массив для хранения результатов
-        Movies[] result = new Movies[numberMovies];
+        Movies[] result = new Movies[movies.length];
 // перебираем массив в прямом порядке
 // но кладём в результаты в обратном
-        for (int i = 0; i < numberMovies; i++) {
+        for (int i = 0; i < movies.length; i++) {
             int index = movies.length - i - 1;
             result[i] = movies[index];
         }
