@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Movies;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MoviesRepositoryTest {
     private MoviesRepository repository = new MoviesRepository();
@@ -52,9 +51,7 @@ class MoviesRepositoryTest {
 
     @Test
     void shouldfindByIdNull() {
-        Movies actual = repository.findById(21);
-        Movies expected = null;
-        assertEquals(expected, actual);
+        assertNull(repository.findById(21));
     }
 
     @Test
@@ -62,7 +59,7 @@ class MoviesRepositoryTest {
         Movies twelfth = new Movies(12, "Тигры", "документальный", "06.04.2020");
         repository.save(twelfth);
         Movies[] actual = repository.findAll();
-        Movies[] expected = new Movies[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth,eleventh,twelfth};
+        Movies[] expected = new Movies[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh, twelfth};
         assertArrayEquals(expected, actual);
     }
 
@@ -79,6 +76,14 @@ class MoviesRepositoryTest {
         repository.removeAll();
         Movies[] actual = repository.findAll();
         Movies[] expected = new Movies[0];
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldremoveByErrorId() {
+        repository.removeById(119);
+        Movies[] actual = repository.findAll();
+        Movies[] expected = new Movies[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth,eleventh};
         assertArrayEquals(expected, actual);
     }
 }

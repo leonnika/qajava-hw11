@@ -37,17 +37,17 @@ class MoviesManagerWithNumberTest {
 
     @BeforeEach
     void setUp() {
-        manager.AddMovies(first);
-        manager.AddMovies(second);
-        manager.AddMovies(third);
-        manager.AddMovies(fourth);
-        manager.AddMovies(fifth);
-        manager.AddMovies(sixth);
-        manager.AddMovies(seventh);
-        manager.AddMovies(eighth);
-        manager.AddMovies(ninth);
-        manager.AddMovies(tenth);
-        manager.AddMovies(eleventh);
+        manager.addMovies(first);
+        manager.addMovies(second);
+        manager.addMovies(third);
+        manager.addMovies(fourth);
+        manager.addMovies(fifth);
+        manager.addMovies(sixth);
+        manager.addMovies(seventh);
+        manager.addMovies(eighth);
+        manager.addMovies(ninth);
+        manager.addMovies(tenth);
+        manager.addMovies(eleventh);
     }
 
     @Test

@@ -12,13 +12,11 @@ public class MoviesRepository {
 
     //возвращает объект по идентификатору (либо null, если такого объекта нет)
     public Movies findById(int id) {
-        int index = 0;
         for (Movies item : movie) {
-           if (item.getId() == id) {
+            if (item.getId() == id) {
                 return item;
-           }
-           index++;
-       }
+            }
+        }
         return null;
     }
 
@@ -36,6 +34,13 @@ public class MoviesRepository {
     public void removeById(int id) {
         int length = movie.length - 1;
         Movies[] tmp = new Movies[length];
+        int countInput = 0;
+        for (Movies item : movie) {
+            if (item.getId() != id) {
+                countInput++;
+            }
+        }
+        if (countInput==length){
         int index = 0;
         for (Movies item : movie) {
             if (item.getId() != id) {
@@ -43,12 +48,11 @@ public class MoviesRepository {
                 index++;
             }
         } // меняем наши элементы items = tmp;
-        movie = tmp;
+        movie = tmp;}
     }
 
     //полностью вычищает репозиторий
     public void removeAll() {
-         movie = new Movies[0];
-
+        movie = new Movies[0];
     }
 }

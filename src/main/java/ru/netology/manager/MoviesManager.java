@@ -23,9 +23,8 @@ public class MoviesManager {
     public MoviesManager() {
     }
 
-    public void AddMovies(Movies movie) {
+    public void addMovies(Movies movie) {
         repository.save(movie);
-
     }
 
     public Movies[] getLastMovies() {
