@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import ru.netology.domain.Movies;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class MoviesManagerNotFullAfishaTest {
 
@@ -25,28 +26,73 @@ class MoviesManagerNotFullAfishaTest {
     }
 
     @Test
-    void shouldGetLastMoviesNotFullAfisha() {
+    void shouldGeDefaulttMoviesNotFullAfisha() {
         MoviesManager manager = new MoviesManager();
-        manager.AddMovies(first);
-        manager.AddMovies(second);
-        manager.AddMovies(third);
-        manager.AddMovies(fourth);
-        manager.AddMovies(fifth);
+        manager.addMovies(first);
+        manager.addMovies(second);
+        manager.addMovies(third);
+        manager.addMovies(fourth);
+        manager.addMovies(fifth);
         Movies[] actual = manager.getLastMovies();
         Movies[] expected = new Movies[]{fifth, fourth, third, second, first};
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    void shouldGetLastMoviesIsNumberNotFullAfisha() {
-        MoviesManager manager = new MoviesManager(2);
-        manager.AddMovies(first);
-        manager.AddMovies(second);
-        manager.AddMovies(third);
-        manager.AddMovies(fourth);
-        manager.AddMovies(fifth);
+    void shouldGetNumberMoviesNotFullAfisha() {
+       MoviesManager manager = new MoviesManager(1);
+       manager.addMovies(first);
+       manager.addMovies(second);
+       manager.addMovies(third);
+       manager.addMovies(fourth);
+      manager.addMovies(fifth);
         Movies[] actual = manager.getLastMovies();
-        Movies[] expected = new Movies[]{fifth, fourth};
+        Movies[] expected = new Movies[]{fifth};
         assertArrayEquals(expected, actual);
     }
-}
+
+    @Test
+    void shouldGeMoviesNumberUnder0NotFullAfisha() {
+        MoviesManager manager = new MoviesManager(-3);
+        Movies[] actual = manager.getLastMovies();
+        assertNull(actual);
+        }
+
+     @Test
+    void shouldGetMovieNumberOverMaxNotFullAfisha() {
+        MoviesManager manager = new MoviesManager(100);
+        manager.addMovies(first);
+        manager.addMovies(second);
+        manager.addMovies(third);
+        manager.addMovies(fourth);
+        manager.addMovies(fifth);
+        Movies[] actual = manager.getLastMovies();
+        Movies[] expected = new Movies[]{fifth, fourth, third, second, first};
+        assertArrayEquals(expected, actual);
+    }
+    @Test
+    void shouldGetMovieNumberOverAvailableNotFullAfisha() {
+        MoviesManager manager = new MoviesManager(7);
+        manager.addMovies(first);
+        manager.addMovies(second);
+        manager.addMovies(third);
+        manager.addMovies(fourth);
+        manager.addMovies(fifth);
+        Movies[] actual = manager.getLastMovies();
+        Movies[] expected = new Movies[]{fifth, fourth, third, second, first};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldGeMoviesNotFullAfisha() {
+        MoviesManager manager = new MoviesManager(0);
+        manager.addMovies(first);
+        manager.addMovies(second);
+        manager.addMovies(third);
+        manager.addMovies(fourth);
+        manager.addMovies(fifth);
+        Movies[] actual = manager.getLastMovies();
+        Movies[] expected = new Movies[]{fifth, fourth, third, second, first};
+        assertArrayEquals(expected, actual);
+    }
+      }

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import ru.netology.domain.Movies;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class MoviesManagerTest {
     private MoviesManager manager;
@@ -36,40 +37,86 @@ class MoviesManagerTest {
     }
 
     @Test
-    void shouldGetLastMoviesOverNumberFullAfisha() {
+    void shouldGeDefaultMoviesFullAfisha() {
         MoviesManager manager = new MoviesManager();
-        manager.AddMovies(first);
-        manager.AddMovies(second);
-        manager.AddMovies(third);
-        manager.AddMovies(fourth);
-        manager.AddMovies(fifth);
-        manager.AddMovies(sixth);
-        manager.AddMovies(seventh);
-        manager.AddMovies(eighth);
-        manager.AddMovies(ninth);
-        manager.AddMovies(tenth);
-        manager.AddMovies(eleventh);
+        manager.addMovies(first);
+        manager.addMovies(second);
+        manager.addMovies(third);
+        manager.addMovies(fourth);
+        manager.addMovies(fifth);
+        manager.addMovies(sixth);
+        manager.addMovies(seventh);
+        manager.addMovies(eighth);
+        manager.addMovies(ninth);
+        manager.addMovies(tenth);
+        manager.addMovies(eleventh);
         Movies[] actual = manager.getLastMovies();
         Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    void shouldGetLastMoviesIsNumberFullAfisha() {
+    void shouldGetNumberMoviesFullAfisha() {
         MoviesManager manager = new MoviesManager(3);
-        manager.AddMovies(first);
-        manager.AddMovies(second);
-        manager.AddMovies(third);
-        manager.AddMovies(fourth);
-        manager.AddMovies(fifth);
-        manager.AddMovies(sixth);
-        manager.AddMovies(seventh);
-        manager.AddMovies(eighth);
-        manager.AddMovies(ninth);
-        manager.AddMovies(tenth);
-        manager.AddMovies(eleventh);
+        manager.addMovies(first);
+        manager.addMovies(second);
+        manager.addMovies(third);
+        manager.addMovies(fourth);
+        manager.addMovies(fifth);
+        manager.addMovies(sixth);
+        manager.addMovies(seventh);
+        manager.addMovies(eighth);
+        manager.addMovies(ninth);
+        manager.addMovies(tenth);
+        manager.addMovies(eleventh);
         Movies[] actual = manager.getLastMovies();
         Movies[] expected = new Movies[]{eleventh, tenth, ninth};
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    void shouldGeMoviesNumberUnder0FullAfisha() {
+        MoviesManager manager = new MoviesManager(-7);
+        Movies[] actual = manager.getLastMovies();
+        assertNull(actual);
+    }
+
+    @Test
+    void shouldGeMoviesNumderOverMaxFullAfisha() {
+        MoviesManager manager = new MoviesManager(100);
+        manager.addMovies(first);
+        manager.addMovies(second);
+        manager.addMovies(third);
+        manager.addMovies(fourth);
+        manager.addMovies(fifth);
+        manager.addMovies(sixth);
+        manager.addMovies(seventh);
+        manager.addMovies(eighth);
+        manager.addMovies(ninth);
+        manager.addMovies(tenth);
+        manager.addMovies(eleventh);
+        Movies[] actual = manager.getLastMovies();
+        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldGeMoviesNumderMaxFullAfisha() {
+        MoviesManager manager = new MoviesManager(0);
+        manager.addMovies(first);
+        manager.addMovies(second);
+        manager.addMovies(third);
+        manager.addMovies(fourth);
+        manager.addMovies(fifth);
+        manager.addMovies(sixth);
+        manager.addMovies(seventh);
+        manager.addMovies(eighth);
+        manager.addMovies(ninth);
+        manager.addMovies(tenth);
+        manager.addMovies(eleventh);
+        Movies[] actual = manager.getLastMovies();
+        Movies[] expected = new Movies[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        assertArrayEquals(expected, actual);
+    }
+
 }
