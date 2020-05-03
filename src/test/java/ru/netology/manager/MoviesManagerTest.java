@@ -101,7 +101,7 @@ class MoviesManagerTest {
     }
 
     @Test
-    void shouldGeMoviesNumderMaxFullAfisha() {
+    void shouldGeMoviesNumder0FullAfisha() {
         MoviesManager manager = new MoviesManager(0);
         manager.addMovies(first);
         manager.addMovies(second);
@@ -115,8 +115,45 @@ class MoviesManagerTest {
         manager.addMovies(tenth);
         manager.addMovies(eleventh);
         Movies[] actual = manager.getLastMovies();
-        Movies[] expected = new Movies[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
         assertArrayEquals(expected, actual);
     }
 
+    @Test
+    void shouldGeMoviesTopFullAfisha() {
+        MoviesManager manager = new MoviesManager(10);
+        manager.addMovies(first);
+        manager.addMovies(second);
+        manager.addMovies(third);
+        manager.addMovies(fourth);
+        manager.addMovies(fifth);
+        manager.addMovies(sixth);
+        manager.addMovies(seventh);
+        manager.addMovies(eighth);
+        manager.addMovies(ninth);
+        manager.addMovies(tenth);
+        manager.addMovies(eleventh);
+        Movies[] actual = manager.getLastMovies();
+        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldGeMoviesBottomFullAfisha() {
+        MoviesManager manager = new MoviesManager(1);
+        manager.addMovies(first);
+        manager.addMovies(second);
+        manager.addMovies(third);
+        manager.addMovies(fourth);
+        manager.addMovies(fifth);
+        manager.addMovies(sixth);
+        manager.addMovies(seventh);
+        manager.addMovies(eighth);
+        manager.addMovies(ninth);
+        manager.addMovies(tenth);
+        manager.addMovies(eleventh);
+        Movies[] actual = manager.getLastMovies();
+        Movies[] expected = new Movies[]{eleventh};
+        assertArrayEquals(expected, actual);
+    }
 }

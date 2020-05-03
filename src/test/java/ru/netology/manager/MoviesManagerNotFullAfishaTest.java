@@ -40,12 +40,12 @@ class MoviesManagerNotFullAfishaTest {
 
     @Test
     void shouldGetNumberMoviesNotFullAfisha() {
-       MoviesManager manager = new MoviesManager(1);
-       manager.addMovies(first);
-       manager.addMovies(second);
-       manager.addMovies(third);
-       manager.addMovies(fourth);
-      manager.addMovies(fifth);
+        MoviesManager manager = new MoviesManager(1);
+        manager.addMovies(first);
+        manager.addMovies(second);
+        manager.addMovies(third);
+        manager.addMovies(fourth);
+        manager.addMovies(fifth);
         Movies[] actual = manager.getLastMovies();
         Movies[] expected = new Movies[]{fifth};
         assertArrayEquals(expected, actual);
@@ -56,9 +56,9 @@ class MoviesManagerNotFullAfishaTest {
         MoviesManager manager = new MoviesManager(-3);
         Movies[] actual = manager.getLastMovies();
         assertNull(actual);
-        }
+    }
 
-     @Test
+    @Test
     void shouldGetMovieNumberOverMaxNotFullAfisha() {
         MoviesManager manager = new MoviesManager(100);
         manager.addMovies(first);
@@ -70,6 +70,7 @@ class MoviesManagerNotFullAfishaTest {
         Movies[] expected = new Movies[]{fifth, fourth, third, second, first};
         assertArrayEquals(expected, actual);
     }
+
     @Test
     void shouldGetMovieNumberOverAvailableNotFullAfisha() {
         MoviesManager manager = new MoviesManager(7);
