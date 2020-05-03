@@ -1,4 +1,6 @@
+
 package ru.netology.manager;
+
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,16 +11,16 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.Movies;
 import ru.netology.repository.MoviesRepository;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
         // расширение для JUnit
-class MoviesManagerWithNumberTest {
+class MoviesManagerNumberUnder0Test {
     @Mock  // подставляет заглушку вместо реальной реализации
     private MoviesRepository repository;
-    private int number = 5;
+    private int number = -4;
     @InjectMocks  // подставляет заглушку в конструктор
     private MoviesManager manager = new MoviesManager(repository, number);
     private Movies first = new Movies(1, "Бладшоп", "боевик", "01.04.2020");
@@ -49,24 +51,22 @@ class MoviesManagerWithNumberTest {
     }
 
     @Test
-    void shouldGetLastMoviesWithNumberFullAfisha() {
+    void shouldLastMoviesNumberUnder0FullAfisha() {
 // настройка заглушки
         Movies[] returned = new Movies[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh};
         doReturn(returned).when(repository).findAll();
-        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh};
-        Movies[] actual = manager.getLastMovies();
-        assertArrayEquals(expected, actual);
+        assertNull(manager.getLastMovies());
         verify(repository).findAll();
     }
 
     @Test
-    void shouldGetLastMoviesWithNumberNoFullAfisha() {
+    void shouldGetMoviesNumberUnder0NoFullAfisha() {
 // настройка заглушки
         Movies[] returned = new Movies[]{first, second, third};
         doReturn(returned).when(repository).findAll();
-        Movies[] expected = new Movies[]{third, second, first};
-        Movies[] actual = manager.getLastMovies();
-        assertArrayEquals(expected, actual);
+        assertNull(manager.getLastMovies());
         verify(repository).findAll();
     }
 }
+
+

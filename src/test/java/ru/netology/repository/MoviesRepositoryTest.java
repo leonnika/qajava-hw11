@@ -83,7 +83,7 @@ class MoviesRepositoryTest {
     void shouldremoveByErrorId() {
         repository.removeById(119);
         Movies[] actual = repository.findAll();
-        Movies[] expected = new Movies[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth,eleventh};
+        Movies[] expected = new Movies[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh};
         assertArrayEquals(expected, actual);
     }
 }

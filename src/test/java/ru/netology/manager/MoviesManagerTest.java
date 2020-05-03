@@ -48,7 +48,7 @@ class MoviesManagerTest {
     }
 
     @Test
-    void shouldGetLastMoviesOverNumberFullAfisha() {
+    void shouldGetMoviesOverNumberFullAfisha() {
 // настройка заглушки
         Movies[] returned = new Movies[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh};
         doReturn(returned).when(repository).findAll();
@@ -59,11 +59,11 @@ class MoviesManagerTest {
     }
 
     @Test
-    void shouldGetLastMoviesNoFullAfisha() {
+    void shouldGetMoviesNoFullAfisha() {
 // настройка заглушки
         Movies[] returned = new Movies[]{first, second, third, fourth, fifth, sixth};
         doReturn(returned).when(repository).findAll();
-        Movies[] expected = new Movies[]{sixth, fifth, fourth, third, second,first};
+        Movies[] expected = new Movies[]{sixth, fifth, fourth, third, second, first};
         Movies[] actual = manager.getLastMovies();
         assertArrayEquals(expected, actual);
         verify(repository).findAll();

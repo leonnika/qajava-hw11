@@ -15,10 +15,10 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
         // расширение для JUnit
-class MoviesManagerWithNumberTest {
+class MoviesManagerNumberOverMaxTest {
     @Mock  // подставляет заглушку вместо реальной реализации
     private MoviesRepository repository;
-    private int number = 5;
+    private int number = 15;
     @InjectMocks  // подставляет заглушку в конструктор
     private MoviesManager manager = new MoviesManager(repository, number);
     private Movies first = new Movies(1, "Бладшоп", "боевик", "01.04.2020");
@@ -49,18 +49,18 @@ class MoviesManagerWithNumberTest {
     }
 
     @Test
-    void shouldGetLastMoviesWithNumberFullAfisha() {
+    void shouldGetMoviesNumberOverMaxFullAfisha() {
 // настройка заглушки
         Movies[] returned = new Movies[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh};
         doReturn(returned).when(repository).findAll();
-        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh};
+        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
         Movies[] actual = manager.getLastMovies();
         assertArrayEquals(expected, actual);
         verify(repository).findAll();
     }
 
     @Test
-    void shouldGetLastMoviesWithNumberNoFullAfisha() {
+    void shouldGetMoviesNumberOverMaxNoFullAfisha() {
 // настройка заглушки
         Movies[] returned = new Movies[]{first, second, third};
         doReturn(returned).when(repository).findAll();

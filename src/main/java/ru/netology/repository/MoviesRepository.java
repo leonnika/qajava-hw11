@@ -30,7 +30,7 @@ public class MoviesRepository {
         movie = tmp;
     }
 
-    // удаляет объект по идентификатору (если объекта нет, то исключение)
+    // удаляет объект по идентификатору (если объекта нет, ничего не происходит)
     public void removeById(int id) {
         int length = movie.length - 1;
         Movies[] tmp = new Movies[length];
@@ -40,15 +40,16 @@ public class MoviesRepository {
                 countInput++;
             }
         }
-        if (countInput==length){
-        int index = 0;
-        for (Movies item : movie) {
-            if (item.getId() != id) {
-                tmp[index] = item;
-                index++;
-            }
-        } // меняем наши элементы items = tmp;
-        movie = tmp;}
+        if (countInput == length) {
+            int index = 0;
+            for (Movies item : movie) {
+                if (item.getId() != id) {
+                    tmp[index] = item;
+                    index++;
+                }
+            } // меняем наши элементы items = tmp;
+            movie = tmp;
+        }
     }
 
     //полностью вычищает репозиторий
