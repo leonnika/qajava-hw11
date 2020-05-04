@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.Movies;
 import ru.netology.repository.MoviesRepository;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
@@ -55,7 +56,9 @@ class MoviesManagerNumberUnder0Test {
 // настройка заглушки
         Movies[] returned = new Movies[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, eleventh};
         doReturn(returned).when(repository).findAll();
-        assertNull(manager.getLastMovies());
+        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
+        Movies[] actual = manager.getLastMovies();
+        assertArrayEquals(expected, actual);
         verify(repository).findAll();
     }
 
@@ -64,7 +67,9 @@ class MoviesManagerNumberUnder0Test {
 // настройка заглушки
         Movies[] returned = new Movies[]{first, second, third};
         doReturn(returned).when(repository).findAll();
-        assertNull(manager.getLastMovies());
+        Movies[] expected = new Movies[]{third, second,first};
+        Movies[] actual = manager.getLastMovies();
+        assertArrayEquals(expected, actual);
         verify(repository).findAll();
     }
 }

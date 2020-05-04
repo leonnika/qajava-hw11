@@ -13,14 +13,6 @@ public class MoviesManager {
         this.numberMovies = numberMovies;
     }
 
-    public MoviesManager(MoviesRepository repository) {
-        this.repository = repository;
-    }
-
-    public MoviesManager(int numberMovies) {
-        this.numberMovies = numberMovies;
-    }
-
     public MoviesManager() {
     }
 
@@ -31,24 +23,14 @@ public class MoviesManager {
     public Movies[] getLastMovies() {
         Movies[] movies = repository.findAll();
         // определяем количество фильмов которые выводим в афише
-        //если пользователь запрашивает отрицательное кол-во фильмом, то метод ничего не возвращает
-        if (numberMovies < 0) {
-            return null;
-        }
-        //если вызов метода без указания кол-ва фильмов, или с указанием 0(в этих двух случаях параметр numberMovies=0),
-        // то возвращается кол-во фильмов по умолчанию, если фильмов более 10 и все что есть, если фильмов менее 10
-        if (numberMovies == 0) {
-            if (movies.length >= maxMovies) {
-                numberMovies = maxMovies;
-            }
-            if (movies.length < maxMovies) {
-                numberMovies = movies.length;
-            }
+        //если пользователь запрашивает отрицательное кол-во фильмом, то метод возвращает количество по умолчанию
+        if (numberMovies <= 0) {
+            numberMovies = maxMovies;
         }
         //если пользователь запрашивает более максимум фильмов,
         // то метод показывает максимум(10) фильмов, если в афише более максимум(10) фильмов
         // и все что есть, при количестве фильмов менее максимум (10)
-        if (numberMovies > maxMovies) {
+        if (numberMovies >= maxMovies) {
             if (movies.length < maxMovies) {
                 numberMovies = movies.length;
             }
