@@ -11,9 +11,6 @@ public class MoviesManager {
         this.numberMovies = numberMovies;
     }
 
-    public MoviesManager() {
-    }
-
     public void addMovies(Movies movie) {
         int length = movies.length + 1;
         Movies[] tmp = new Movies[length];

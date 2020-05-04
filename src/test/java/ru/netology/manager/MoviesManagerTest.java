@@ -38,7 +38,7 @@ class MoviesManagerTest {
 
     @Test
     void shouldGeDefaultMoviesFullAfisha() {
-        MoviesManager manager = new MoviesManager();
+        MoviesManager manager = new MoviesManager(0);
         manager.addMovies(first);
         manager.addMovies(second);
         manager.addMovies(third);
@@ -84,25 +84,6 @@ class MoviesManagerTest {
     @Test
     void shouldGeMoviesNumderOverMaxFullAfisha() {
         MoviesManager manager = new MoviesManager(100);
-        manager.addMovies(first);
-        manager.addMovies(second);
-        manager.addMovies(third);
-        manager.addMovies(fourth);
-        manager.addMovies(fifth);
-        manager.addMovies(sixth);
-        manager.addMovies(seventh);
-        manager.addMovies(eighth);
-        manager.addMovies(ninth);
-        manager.addMovies(tenth);
-        manager.addMovies(eleventh);
-        Movies[] actual = manager.getLastMovies();
-        Movies[] expected = new Movies[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    void shouldGeMoviesNumder0FullAfisha() {
-        MoviesManager manager = new MoviesManager(0);
         manager.addMovies(first);
         manager.addMovies(second);
         manager.addMovies(third);
