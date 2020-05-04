@@ -45,8 +45,7 @@ class MoviesRepositoryTest {
     @Test
     void shouldfindById() {
         Movies actual = repository.findById(2);
-        Movies expected = second;
-        assertEquals(expected, actual);
+        assertEquals(second, actual);
     }
 
     @Test
